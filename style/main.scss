@@ -14,6 +14,27 @@
  * limitations under the License.
  */
 
-export const DATE_TIME_FORMAT_WITH_MILLISECONDS = 'yyyy-MM-dd\'T\'HH:mm:ss.SSSxxx';
-export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ssxxx';
-export const DATE_FORMAT = 'yyyy-MM-dd';
+// library
+@import 'react-reflex/styles.css';
+
+// mixins
+@import 'abstracts/mixins';
+
+// Base
+@import 'base/variables';
+@import 'base/base';
+@import 'base/utils';
+@import 'base/common';
+@import 'base/panel';
+@import 'base/modal';
+@import 'base/context-menu';
+
+// Reset (overrie library styles)
+@import 'reset/split-pane';
+@import 'reset/monaco-editor';
+@import 'reset/react-reflex';
+
+// Components
+@import 'components/shared';
+@import 'components/app';
+@import 'components/editor';

@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
-export const DATE_TIME_FORMAT_WITH_MILLISECONDS = 'yyyy-MM-dd\'T\'HH:mm:ss.SSSxxx';
-export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ssxxx';
-export const DATE_FORMAT = 'yyyy-MM-dd';
+module.exports = function () {
+  return {
+    plugins: [
+      // Support static, private fields. With option `loose=true`, class properties are compiled to use an
+      // assignment expression instead of `Object.defineProperty`
+      // See https://babeljs.io/docs/en/babel-plugin-proposal-class-properties#loose
+      ['@babel/plugin-proposal-class-properties', { loose: true }],
+    ]
+  };
+};

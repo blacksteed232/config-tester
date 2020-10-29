@@ -14,6 +14,16 @@
  * limitations under the License.
  */
 
-export const DATE_TIME_FORMAT_WITH_MILLISECONDS = 'yyyy-MM-dd\'T\'HH:mm:ss.SSSxxx';
-export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ssxxx';
-export const DATE_FORMAT = 'yyyy-MM-dd';
+.console-panel {
+  height: 100%;
+  width: 100%;
+
+  &__content {
+    height: 100%;
+    overflow: overlay;
+    padding: 1.5rem;
+    line-height: 2rem;
+    font-family: 'Fira Code';
+    font-size: 1.2rem;
+  }
+}

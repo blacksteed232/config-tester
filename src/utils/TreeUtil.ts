@@ -14,6 +14,16 @@
  * limitations under the License.
  */
 
-export const DATE_TIME_FORMAT_WITH_MILLISECONDS = 'yyyy-MM-dd\'T\'HH:mm:ss.SSSxxx';
-export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ssxxx';
-export const DATE_FORMAT = 'yyyy-MM-dd';
+export interface TreeNodeData {
+  isSelected?: boolean;
+  isOpen?: boolean;
+  isLoading?: boolean; // for lazy-loading
+  id: string;
+  label: string;
+  childrenIds?: string[];
+}
+
+export interface TreeData<T extends TreeNodeData> {
+  rootIds: string[];
+  nodes: Map<string, T>;
+}

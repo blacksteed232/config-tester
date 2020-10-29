@@ -14,6 +14,4 @@
  * limitations under the License.
  */
 
-export const DATE_TIME_FORMAT_WITH_MILLISECONDS = 'yyyy-MM-dd\'T\'HH:mm:ss.SSSxxx';
-export const DATE_TIME_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ssxxx';
-export const DATE_FORMAT = 'yyyy-MM-dd';
+import './main.scss';
