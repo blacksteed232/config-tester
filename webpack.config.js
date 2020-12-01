@@ -96,41 +96,11 @@ module.exports = (env, arg) => {
     watchOptions: {
       ignored: /node_modules/,
     },
-    devServer: {
-      compress: true, // enable gzip compression for everything served to reduce traffic size
-      publicPath: '/',
-      open: true,
-      port: 3000,
-      openPage: BaseConfig.baseRoute,
-      // redirect 404s to /index.html
-      historyApiFallback: {
-        // URL contains dot such as for version (majorV.minV.patchV: 1.0.0) need this rule
-        // See https://github.com/bripkens/connect-history-api-fallback#disabledotrule
-        disableDotRule: true
-      },
-      // suppress HMR and WDS messages about updated chunks
-      // NOTE: there is a bug that the line '[HMR] Waiting for update signal from WDS...' is not suppressed
-      // See https://github.com/webpack/webpack-dev-server/issues/2166
-      clientLogLevel: 'warn',
-      stats: {
-        // Make Webpack Dev Middleware less verbose, consider `quiet` and `noInfo` options as well
-        // NOTE: Use custom reporter to output errors and warnings from TS fork checker in `stylish` format. It's less verbose and
-        // repetitive. Since we use the custom plugin, we want to mute `errors` and `warnings` from `webpack-dev-middleware`
-        // See https://github.com/webpack-contrib/webpack-stylish
-        // See https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/119
-        all: false,
-        colors: true,
-        timings: true,
-      },
-    },
     // devServer: {
     //   compress: true, // enable gzip compression for everything served to reduce traffic size
-    //   dev: {
-    //     publicPath: '/',
-    //   },
+    //   publicPath: '/',
     //   open: true,
     //   port: 3000,
-    //   host: "localhost",
     //   openPage: BaseConfig.baseRoute,
     //   // redirect 404s to /index.html
     //   historyApiFallback: {
@@ -138,13 +108,48 @@ module.exports = (env, arg) => {
     //     // See https://github.com/bripkens/connect-history-api-fallback#disabledotrule
     //     disableDotRule: true
     //   },
-    //   client: {
-    //     // suppress HMR and WDS messages about updated chunks
-    //     // NOTE: there is a bug that the line '[HMR] Waiting for update signal from WDS...' is not suppressed
-    //     // See https://github.com/webpack/webpack-dev-server/issues/2166
-    //     logging: 'warn',
+    //   // suppress HMR and WDS messages about updated chunks
+    //   // NOTE: there is a bug that the line '[HMR] Waiting for update signal from WDS...' is not suppressed
+    //   // See https://github.com/webpack/webpack-dev-server/issues/2166
+    //   clientLogLevel: 'warn',
+    //   stats: {
+    //     // Make Webpack Dev Middleware less verbose, consider `quiet` and `noInfo` options as well
+    //     // NOTE: Use custom reporter to output errors and warnings from TS fork checker in `stylish` format. It's less verbose and
+    //     // repetitive. Since we use the custom plugin, we want to mute `errors` and `warnings` from `webpack-dev-middleware`
+    //     // See https://github.com/webpack-contrib/webpack-stylish
+    //     // See https://github.com/TypeStrong/fork-ts-checker-webpack-plugin/issues/119
+    //     all: false,
+    //     colors: true,
+    //     timings: true,
     //   },
     // },
+    devServer: {
+      compress: true, // enable gzip compression for everything served to reduce traffic size
+      dev: {
+        publicPath: '/',
+      },
+      open: true,
+      // start - should remove this in next iteration of webpack-dev-server@4.beta
+      static: {
+        watch: false,
+      },
+      // end - should remove this in next iteration of webpack-dev-server@4.beta
+      port: 3000,
+      host: "localhost",
+      openPage: BaseConfig.baseRoute,
+      // redirect 404s to /index.html
+      historyApiFallback: {
+        // URL contains dot such as for version (majorV.minV.patchV: 1.0.0) need this rule
+        // See https://github.com/bripkens/connect-history-api-fallback#disabledotrule
+        disableDotRule: true
+      },
+      client: {
+        // suppress HMR and WDS messages about updated chunks
+        // NOTE: there is a bug that the line '[HMR] Waiting for update signal from WDS...' is not suppressed
+        // See https://github.com/webpack/webpack-dev-server/issues/2166
+        logging: 'warn',
+      },
+    },
     infrastructureLogging: {
       // Only warnings and errors
       // See https://webpack.js.org/configuration/other-options/#infrastructurelogginglevel
