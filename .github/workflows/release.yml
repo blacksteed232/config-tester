@@ -44,3 +44,4 @@ jobs:
           # if 2FA is enabled, `NPM_TOKEN` must be of type `automation` to bypass 2FA
           # See https://docs.npmjs.com/requiring-2fa-for-package-publishing-and-settings-modification
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

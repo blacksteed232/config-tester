@@ -8,8 +8,19 @@ if (!process.env.NPM_TOKEN) {
   throw new Error(`NPM_TOKEN is not specified`);
 }
 
+execa.sync('git', ['status', '--porcelain'], {
+  cwd: ROOT_DIR,
+  stdio: 'inherit',
+});
+
 if (execa.sync('git', ['status', '--porcelain'], { cwd: ROOT_DIR }).stdout) {
-  console.log('This command must be executed on a clean repository');
+  console.log(
+    'This command must be executed on a clean repository. Found changes items:',
+  );
+  execa.sync('git', ['status', '--porcelain'], {
+    cwd: ROOT_DIR,
+    stdio: 'inherit',
+  });
   process.exit(1);
 }
 
@@ -78,11 +89,12 @@ packages.forEach((pkg) => {
 for (const pkg of packages) {
   try {
     // Publish using Yarn NPM publish.
-    execa.sync(
+    const a = execa.sync(
       'yarn',
       ['npm', 'publish', '--tolerate-republish', ...process.argv.slice(2)],
       { cwd: pkg.path, stdio: 'inherit' },
     );
+    console.log('huh why passed?', a);
     pkg.published = true;
   } catch {
     // do nothing

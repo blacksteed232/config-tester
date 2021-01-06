@@ -10,7 +10,7 @@ __metadata:
   resolution: "@akphi/app1@workspace:packages/app1"
   dependencies:
     "@akphi/component1": "workspace:*"
-    "@akphi/dev-utils": 0.0.1
+    "@akphi/dev-utils": "workspace:*"
     "@akphi/lib1": "workspace:*"
     react: 17.0.1
     react-dom: 17.0.1
@@ -21,7 +21,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@akphi/component1@workspace:packages/component1"
   dependencies:
-    "@akphi/dev-utils": 0.0.1
+    "@akphi/dev-utils": "workspace:*"
     "@akphi/lib1": "workspace:*"
     "@material-ui/core": 4.11.2
     jest: 26.6.3
@@ -34,7 +34,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akphi/dev-utils@0.0.1, @akphi/dev-utils@workspace:packages/dev-utils":
+"@akphi/dev-utils@workspace:*, @akphi/dev-utils@workspace:packages/dev-utils":
   version: 0.0.0-use.local
   resolution: "@akphi/dev-utils@workspace:packages/dev-utils"
   dependencies:
