@@ -1,5 +1,11 @@
 # @akphi/dev-utils
 
+## 0.0.10
+
+### Patch Changes
+
+- [`d0aef8e`](https://github.com/akphi/config-tester/commit/d0aef8e99f79a5283d0a60e0c75aec5fdc4ec046) Thanks [@akphi](https://github.com/akphi)! - refactor: create packages for eslint-plugin and babel-preset
+
 ## 0.0.9
 
 ### Patch Changes
