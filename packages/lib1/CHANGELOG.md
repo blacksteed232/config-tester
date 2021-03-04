@@ -1,5 +1,11 @@
 # @akphi/lib1
 
+## 0.1.0
+
+### Minor Changes
+
+- [`b96db63`](https://github.com/akphi/config-tester/commit/b96db635a8c7e3c03afadc06def6fe6736a24f7f) Thanks [@akphi](https://github.com/akphi)! - Testing changeset publish
+
 ## 0.0.14
 
 ### Patch Changes

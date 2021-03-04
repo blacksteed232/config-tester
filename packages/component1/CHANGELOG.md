@@ -1,5 +1,16 @@
 # @akphi/component1
 
+## 0.1.0
+
+### Minor Changes
+
+- [`b96db63`](https://github.com/akphi/config-tester/commit/b96db635a8c7e3c03afadc06def6fe6736a24f7f) Thanks [@akphi](https://github.com/akphi)! - Try out changeset/publish
+
+### Patch Changes
+
+- Updated dependencies [[`b96db63`](https://github.com/akphi/config-tester/commit/b96db635a8c7e3c03afadc06def6fe6736a24f7f)]:
+  - @akphi/lib1@0.1.0
+
 ## 0.0.15
 
 ### Patch Changes
