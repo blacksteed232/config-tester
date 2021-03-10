@@ -1,0 +1,205 @@
+name: Changeset Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  changeset:
+    name: Changeset (TEST) - With `git pull`
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          # fetch all Git history so that `changesets` can generate changelogs with the correct commits
+          fetch-depth: 0
+      - name: Get Yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - name: Setup Yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 14.x
+      - name: Install dependencies
+        run: yarn
+      - name: 'Git inspection (TEST): git pull -f origin master:master'
+        run: git pull -f origin master:master
+      - name: 'Git inspection (TEST): git merge-base master HEAD'
+        run: git merge-base master HEAD
+      - name: 'Git inspection (TEST): git merge-base origin/master HEAD'
+        run: git merge-base origin/master HEAD
+      - name: 'Git inspection (TEST): git branch -r'
+        run: git branch -r
+      - name: Check for changesets (TEST)
+        run: yarn changeset status --since=master
+
+  changeset-2:
+    name: Changeset (TEST) - No `git pull` and call `git merge-base master`
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          # fetch all Git history so that `changesets` can generate changelogs with the correct commits
+          fetch-depth: 0
+      - name: Get Yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - name: Setup Yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 14.x
+      - name: Install dependencies
+        run: yarn
+      # - name: 'Git inspection (TEST): git pull -f origin master:master'
+      #   run: git pull -f origin master:master
+      - name: 'Git inspection (TEST): git merge-base master HEAD'
+        run: git merge-base master HEAD
+      - name: 'Git inspection (TEST): git merge-base origin/master HEAD'
+        run: git merge-base origin/master HEAD
+      - name: 'Git inspection (TEST): git branch -r'
+        run: git branch -r
+      - name: Check for changesets (TEST)
+        run: yarn changeset status --since=master
+
+  changeset-3:
+    name: Changeset (TEST) - No `git pull` and call `git branch -r`
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          # fetch all Git history so that `changesets` can generate changelogs with the correct commits
+          fetch-depth: 0
+      - name: Get Yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - name: Setup Yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 14.x
+      - name: Install dependencies
+        run: yarn
+      # - name: 'Git inspection (TEST): git pull -f origin master:master'
+      #   run: git pull -f origin master:master
+      - name: 'Git inspection (TEST): git branch -r'
+        run: git branch -r
+      - name: 'Git inspection (TEST): git merge-base master HEAD'
+        run: git merge-base master HEAD
+      - name: 'Git inspection (TEST): git merge-base origin/master HEAD'
+        run: git merge-base origin/master HEAD
+      - name: Check for changesets (TEST)
+        run: yarn changeset status --since=master
+
+  changeset-4:
+    name: Changeset (TEST) - No `git pull` and call `git merge-base origin/master`
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          # fetch all Git history so that `changesets` can generate changelogs with the correct commits
+          fetch-depth: 0
+      - name: Get Yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - name: Setup Yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 14.x
+      - name: Install dependencies
+        run: yarn
+      # - name: 'Git inspection (TEST): git pull -f origin master:master'
+      #   run: git pull -f origin master:master
+      - name: 'Git inspection (TEST): git merge-base origin/master HEAD'
+        run: git merge-base origin/master HEAD
+      - name: 'Git inspection (TEST): git branch -r'
+        run: git branch -r
+      - name: 'Git inspection (TEST): git merge-base master HEAD'
+        run: git merge-base master HEAD
+      - name: Check for changesets (TEST)
+        run: yarn changeset status --since=master
+
+  changeset-5:
+    name: Changeset (TEST) - No `git pull` and call stuff
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          # fetch all Git history so that `changesets` can generate changelogs with the correct commits
+          fetch-depth: 0
+      - name: Get Yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - name: Setup Yarn cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 14.x
+      - name: Install dependencies
+        run: yarn
+      # - name: 'Git inspection (TEST): git pull -f origin master:master'
+      #   run: git pull -f origin master:master
+      - name: 'Git inspection (TEST): cat .git/config'
+        run: cat .git/config
+      - name: 'Git inspection (TEST): git merge-base origin/master HEAD'
+        run: git merge-base origin/master HEAD
+      - name: 'Git inspection (TEST): git branch'
+        run: git branch
+      - name: 'Git inspection (TEST): git branch -r'
+        run: git branch -r
+      - name: 'Git inspection (TEST): git show-ref master'
+        run: git show-ref master
+      - name: 'Git inspection (TEST): test -f .git/refs/heads/master && echo exists'
+        run: test -f .git/refs/heads/master && echo "exists"
+      - name: 'Git inspection (TEST): git show refs/heads/master'
+        run: git show refs/heads/master
+      - name: 'Git inspection (TEST): git merge-base master HEAD'
+        run: git merge-base master HEAD
+      - name: Check for changesets (TEST)
+        run: yarn changeset status --since=master
